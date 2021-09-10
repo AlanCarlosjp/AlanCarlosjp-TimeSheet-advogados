@@ -1,7 +1,10 @@
 package br.com.vhclaw.timesheet.entities;
 
+import br.com.vhclaw.timesheet.DTO.TimeSheetDTO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -71,7 +74,7 @@ public class Advogado implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public List<TimeSheet> getTimeSheets() {
+	public Collection<? extends TimeSheetDTO> getTimeSheets() {
 		return timeSheets;
 	}
 

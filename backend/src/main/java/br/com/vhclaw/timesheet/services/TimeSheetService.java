@@ -1,14 +1,11 @@
 package br.com.vhclaw.timesheet.services;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
-import br.com.vhclaw.timesheet.DTO.AdvogadoDTO;
-import br.com.vhclaw.timesheet.DTO.ClienteDTO;
 import br.com.vhclaw.timesheet.DTO.RelatorioDTO;
 import br.com.vhclaw.timesheet.entities.Cliente;
 import br.com.vhclaw.timesheet.repositories.ClienteRepository;
@@ -98,8 +95,11 @@ public class TimeSheetService {
 
     }
 
-    public List<TimeSheet> findByNameOurDate(String id, String dtIn) {
-        return null;
+    public List<TimeSheetDTO> findAdvIdTimeSheet(Long idAdv) {
+        List<TimeSheetDTO> timeSheet = new ArrayList<>();
+        Advogado advogadoDTO = advRep.getOne(idAdv);
+        timeSheet.addAll(advogadoDTO.getTimeSheets());
+        return timeSheet;
     }
 
     public List<TimeSheet> findByIdOurDate(Long id, String dtIn) {

@@ -1,5 +1,6 @@
 package br.com.vhclaw.timesheet.resources;
 
+import br.com.vhclaw.timesheet.DTO.AdvogadoDTO;
 import br.com.vhclaw.timesheet.DTO.TimeSheetDTO;
 import br.com.vhclaw.timesheet.entities.TimeSheet;
 import br.com.vhclaw.timesheet.services.TimeSheetService;
@@ -56,14 +57,19 @@ public class TimeSheetResource {
 		return ResponseEntity.noContent().build();
 	}
 
-	@GetMapping(value = "/id/{id]/date/{date}")
-	public ResponseEntity<List<TimeSheet>> findByNameOurDate(@PathVariable Long id,@PathVariable String dti){
-		List<TimeSheet> lista = service.findByIdOurDate(id, dti);
+	@GetMapping(value = "/id/{idClente}/date/{date}")
+	public ResponseEntity<List<TimeSheet>> findByNameOurDate(@PathVariable Long idCliente,@PathVariable String dti){
+		List<TimeSheet> lista = service.findByIdOurDate(idCliente, dti);
 		return ResponseEntity.ok().body(lista);
 	}
-	@GetMapping(value = "/nome/{nome}/data/{data}")
-	public ResponseEntity<List<TimeSheet>> findByNameOurDate(@PathVariable String nome,@PathVariable String dti){
-		List<TimeSheet> lista = service.findByNameOurDate(nome, dti);
+	@GetMapping(value = "/nome/{nomeCliente}/data/{data}")
+	public ResponseEntity<List<TimeSheet>> findByNameOurDate(@PathVariable String nomeCliente,@PathVariable String dti){
+		List<TimeSheet> lista = service.findByNameOurDate(nomeCliente, dti);
 		return ResponseEntity.ok().body(lista);
+	}
+
+	public ResponseEntity<List<TimeSheetDTO>> getTimeSheetAdv(Long idAdv){
+		List<TimeSheetDTO> advogadoDTOS = service.findAdvIdTimeSheet(idAdv);
+		return ResponseEntity.ok().body(advogadoDTOS);
 	}
 }
