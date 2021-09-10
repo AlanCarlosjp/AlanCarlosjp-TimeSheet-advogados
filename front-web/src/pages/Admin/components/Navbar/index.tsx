@@ -1,0 +1,51 @@
+import { isAllowedByRole } from 'core/utils/auth';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './styles.scss';
+
+const Navbar = () => (
+    <nav className="admin-nav">
+        <ul>
+            <li>
+                <NavLink to="/admin/timesheet" className="admin-nav-item">
+                    TIMESHEETS
+                    </NavLink>
+            </li>
+            <li>
+                <NavLink to="/admin/cliente" className="admin-nav-item">
+                    CLIENTES
+                    </NavLink>
+            </li>
+            <li>
+                {isAllowedByRole(['ROLE_ADMIN']) && (
+                    <NavLink to="/admin/advogado" className="admin-nav-item">
+                        ADVOGADOS
+                    </NavLink>
+                )}
+            </li>
+            <li>
+                {isAllowedByRole(['ROLE_ADMIN']) && (
+                    <NavLink to="/admin/relatorio" className="admin-nav-item">
+                        RELATÓRIOS
+                    </NavLink>
+                )}
+            </li>
+            <li>
+                {isAllowedByRole(['ROLE_ADMIN']) && (
+                    <NavLink to="/admin/caso" className="admin-nav-item">
+                        CONTRATOS
+                    </NavLink>
+                )}
+            </li>
+            <li>
+                {isAllowedByRole(['ROLE_ADMIN']) && (
+                    <NavLink to="/admin/categoria" className="admin-nav-item">
+                        CATEGORIAS
+                    </NavLink>
+                )}
+            </li>
+        </ul>
+    </nav>
+)
+
+export default Navbar;
